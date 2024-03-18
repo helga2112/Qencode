@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { isEmailValid } from '../../utils/isEmailValid';
+import './InputWithValidation.scss'
 
 const  InputWithValidation =() => {
   const [inputValue, setInputValue] = useState('');

@@ -1,7 +1,10 @@
+$colorLightGrey: #e3e6e9;
+
 .LoginInput {
     width: 400px;
     height: 48px;
     border-radius: 6px;
     border-width: 1px;
     border-color: $colorLightGrey;
+    border-style: solid;
   }

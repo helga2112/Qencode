@@ -1,0 +1,16 @@
+@import './../../../Theme.scss';
+
+.LoginButton {
+    cursor: pointer;
+    width: 192px;
+    height: 48px;
+    border-radius: 6px;
+    background-color: #ffffff;
+    border-color: $colorLightGrey;
+    box-shadow: none;
+    border-width: 1.2px;
+  
+    &:active {
+      background-color: darken(#ffffff, 10);
+    }
+  }
