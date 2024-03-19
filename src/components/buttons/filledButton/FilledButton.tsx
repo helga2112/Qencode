@@ -2,12 +2,14 @@ import './IconButton.scss'
 
 interface IconButtonProps {
     title: string
+    onClick?: () => void
+    disabled?: boolean
 }
 
-function FilledButton({title}:IconButtonProps) {
+const FilledButton = ({ title, onClick, disabled }: IconButtonProps) => {
 
     return (
-        <button className='FilledButton'>
+        <button className='FilledButton' onClick={onClick} disabled={disabled}>
             {title}
         </button>
 

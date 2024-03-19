@@ -1,5 +1,5 @@
 
-export const ErrorMessage = ({errorMessage}: {errorMessage: string}) => {
+export const ErrorPage = ({errorMessage}: {errorMessage: string}) => {
     return(
         <div>
             {errorMessage}

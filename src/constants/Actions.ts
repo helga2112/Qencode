@@ -1,0 +1,10 @@
+export enum ACTIONS {
+    ACTION_ADD_LOGIN ='ACTION_ADD_LOGIN',
+    ACTION_ADD_PASSOWORD = "ACTION_ADD_PASSOWORD ",
+    ACTION_PASSWORD_RESET = "ACTION_PASSWORD_RESET"
+}
+
+export type ReducerActions = {
+    type: ACTIONS.ACTION_ADD_LOGIN
+    payload: string
+}

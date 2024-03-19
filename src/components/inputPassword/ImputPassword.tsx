@@ -1,8 +1,14 @@
 import EyeIcon from './../../assets/eyeIcon.svg'
 import React, { useState } from 'react';
 import './InputPassword.scss'
+import InputWithValidation from '../inputWithValidation/InputWithValidation';
+import { isEmptyString } from '../../utils/usEmptyString';
 
-const InputPassword = () => {
+interface InputPasswordProps {
+    setValid: (isValid: boolean) => void
+}
+
+const InputPassword = ({ setValid }: InputPasswordProps) => {
     const [isVisible, setIsVisible] = useState(false);
     const [inputValue, setInputValue] = useState('');
 
@@ -16,14 +22,16 @@ const InputPassword = () => {
 
     return (
         <div className='passwordContainer'>
-            <input
+            <InputWithValidation
                 type={isVisible ? 'type' : 'password'}
                 className='Password'
                 value={inputValue}
                 onChange={onChange}
                 onBlur={validateInput}
                 placeholder="Password"
-            />
+                error={''}
+                validator={isEmptyString}
+                setValid={setValid} />
             <img className={isVisible ? 'EyeIconActive' : 'EyeIcon'}
                 src={EyeIcon}
                 alt=''

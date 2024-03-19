@@ -1,5 +1,9 @@
 
-@use './../../Theme.scss';
+@import './../../Theme.scss';
+
+.LoginFormContainer {
+  width: 400px;
+}
 
 .BottomText {
   width: 400px;
@@ -13,38 +17,9 @@
 }
 
 .LoginButtons {
+  display: flex;
   flex-direction: row;
-}
-
-.LoginButton {
-  cursor: pointer;
-  width: 192px;
-  height: 48px;
-  border-radius: 6px;
-  background-color: #ffffff;
-  margin: 10px;
-  border-color: $colorLightGrey;
-  box-shadow: none;
-  border-width: 1.2px;
-
-  &:active {
-    background-color: darken(#ffffff, 10);
-  }
-}
-
-.MainLoginButton {
-  cursor: pointer;
-  width: 400px;
-  height: 48px;
-  color: #ffffff;
-  border-radius: 6px;
-  background-color: $colorBlue;
-  border-width: 1.2px;
-  margin: 10px;
-  border-color: $colorLightGrey;
-  font-size: 16px;
-  font-weight: 500;
-  margin: 20px 0;
+  justify-content: space-between;
 }
 
 .Divider {
@@ -65,4 +40,14 @@
   background-color: $colorLightGrey;
   margin: 5px;
   width: 160px;
+}
+
+.ForgotEmail {
+  color: blue;
+  text-align: right;
+  cursor: pointer;
+}
+
+.InputHelpText {
+  text-align: left;
 }
