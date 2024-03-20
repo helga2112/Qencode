@@ -40,6 +40,9 @@ path:
 * React
 * Material-UI (MUI)
 
+## Authorisation
+* login: test+ui@qencode.com
+* password: C4aLE2dRM7QE5mT*
 
 
 

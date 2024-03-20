@@ -39,15 +39,15 @@ export const apiSlice = createApi({
                     body: body
                 })
             }),
-            /*  loginAppPost: builder.mutation<LoginResult, LoginRequest>({
+             loginAppPost: builder.mutation<LoginResult, LoginRequest>({
                 query: (body : LoginRequest) => ({
                     url: api.login,
                     method: 'POST',
                     body: body
                 })
-            }) */
+            })
         }
     },
 })
 
-export const { useLoginAppQuery } = apiSlice
+export const { useLoginAppQuery, useLoginAppPostMutation } = apiSlice
