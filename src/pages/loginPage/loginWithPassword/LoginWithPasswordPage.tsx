@@ -29,14 +29,16 @@ function LoginWithPasswordPage() {
           <IconButton title='Github' imgSource={githubIcon} />
         </div>
         <div className="Divider">OR</div>
-        <InputWithValidation
+        {/* <InputWithValidation
           ref={passwordRef}
           error='Please enter password'
           validator={isEmptyString}
+          setValid={setFormValid} /> */}
+        <InputPassword
+          ref={passwordRef}
           setValid={setFormValid} />
-     {/*    <InputPassword /> */}
         <div className='ForgotEmail' onClick={forgotPassword}>Forgot your password?</div>
-        <FilledButton title='Login to Qencode' disabled={isFormValid}/>
+        <FilledButton title='Login to Qencode' disabled={isFormValid} />
         <span className="BottomText">Is your company new to Qencode?
           <a href='http://google.com'>Sign up</a>
         </span>

@@ -1,11 +1,11 @@
 import { Route, Routes } from "react-router-dom"
-import LoginPage from "../../pages/loginPage/login/LoginPage"
-import LoginWithPasswordPage from "../../pages/loginPage/loginWithPassword/LoginWithPasswordPage"
-import ResetPasswordPage from "../../pages/loginPage/resetPassword/ResetPasswordPage"
-import ForgotPasswordPage from "../../pages/loginPage/forgotPassword/ForgotPasswordPage"
-import { ErrorPage } from "../../pages/errorPage/ErrorPage"
-import { useAppSelector } from "../../app/hooks"
-import HomePage from "../../pages/homePage/HomePage"
+import LoginPage from "@/pages/loginPage/login/LoginPage"
+import LoginWithPasswordPage from "@/pages/loginPage/loginWithPassword/LoginWithPasswordPage"
+import ResetPasswordPage from "@/pages/loginPage/resetPassword/ResetPasswordPage"
+import ForgotPasswordPage from "@/pages/loginPage/forgotPassword/ForgotPasswordPage"
+import { ErrorPage } from "@/pages/errorPage/ErrorPage"
+import { useAppSelector } from "@/app/hooks"
+import HomePage from "@/pages/homePage/HomePage"
 
 
 export const AppRouter = () => {

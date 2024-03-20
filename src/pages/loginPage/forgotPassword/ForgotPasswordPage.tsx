@@ -1,8 +1,8 @@
 import './../LoginPage.scss'
-import FilledButton from '../../../components/buttons/filledButton/FilledButton';
-import SimpleButton from '../../../components/buttons/simpleButton/SimpleButton';
+import FilledButton from '@/components/buttons/filledButton/FilledButton';
+import SimpleButton from '@/components/buttons/simpleButton/SimpleButton';
 import { useNavigate } from 'react-router-dom';
-import LoginPageWrapper from '../../../components/loginWrapper/LoginWrapper';
+import LoginPageWrapper from '@/components/loginWrapper/LoginWrapper';
 
 
 function ForgotPasswordPage() {

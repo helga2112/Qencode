@@ -1,8 +1,8 @@
-import { BrowserRouter } from 'react-router-dom';
-import './App.scss';
-import { AppRouter } from './components/routers/AppRputer';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import { AppRouter } from '@/components/routers/AppRputer';
 import { store } from './app/store'
+import './App.scss';
 
 function App() {
   return (

@@ -1,4 +1,4 @@
-import FilledButton from "../../components/buttons/filledButton/FilledButton"
+import FilledButton from "@/components/buttons/filledButton/FilledButton"
 
 export const HomePage = () => {
     return (

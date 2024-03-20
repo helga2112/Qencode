@@ -1,8 +1,8 @@
 import './../LoginPage.scss'
-import FilledButton from '../../../components/buttons/filledButton/FilledButton';
-import InputPassword from '../../../components/inputPassword/ImputPassword';
+import FilledButton from '@/components/buttons/filledButton/FilledButton';
+import InputPassword from '@/components/inputPassword/ImputPassword';
 import { useNavigate } from 'react-router-dom';
-import LoginPageWrapper from '../../../components/loginWrapper/LoginWrapper';
+import LoginPageWrapper from '@/components/loginWrapper/LoginWrapper';
 
 
 function ResetPasswordPage() {

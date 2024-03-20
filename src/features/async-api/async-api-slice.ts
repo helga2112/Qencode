@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import {  BASE_API } from '../../api/api'
+import {  BASE_API, api } from '@/api/api'
 
 interface LoginRequest {
     email: string
@@ -38,7 +38,14 @@ export const apiSlice = createApi({
                     method: 'POST',
                     body: body
                 })
-            })
+            }),
+            /*  loginAppPost: builder.mutation<LoginResult, LoginRequest>({
+                query: (body : LoginRequest) => ({
+                    url: api.login,
+                    method: 'POST',
+                    body: body
+                })
+            }) */
         }
     },
 })

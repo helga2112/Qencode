@@ -5,6 +5,7 @@ import InputWithValidation from '../inputWithValidation/InputWithValidation';
 import { isEmptyString } from '../../utils/usEmptyString';
 
 interface InputPasswordProps {
+    ref: React.RefObject<HTMLInputElement>
     setValid: (isValid: boolean) => void
 }
 
@@ -23,7 +24,7 @@ const InputPassword = ({ setValid }: InputPasswordProps) => {
     return (
         <div className='passwordContainer'>
             <InputWithValidation
-                type={isVisible ? 'type' : 'password'}
+                inputType={isVisible ? 'type' : 'password'}
                 className='Password'
                 value={inputValue}
                 onChange={onChange}
