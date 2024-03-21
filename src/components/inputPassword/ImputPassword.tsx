@@ -23,7 +23,7 @@ const InputPassword = ({ setValid }: InputPasswordProps) => {
 
     return (
         <div className='passwordContainer'>
-            <InputWithValidation
+         {/*    <InputWithValidation
                 inputType={isVisible ? 'type' : 'password'}
                 className='Password'
                 value={inputValue}
@@ -32,7 +32,7 @@ const InputPassword = ({ setValid }: InputPasswordProps) => {
                 placeholder="Password"
                 error={''}
                 validator={isEmptyString}
-                setValid={setValid} />
+                setValid={setValid} /> */}
             <img className={isVisible ? 'EyeIconActive' : 'EyeIcon'}
                 src={EyeIcon}
                 alt=''

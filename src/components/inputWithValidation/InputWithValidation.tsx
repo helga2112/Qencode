@@ -1,46 +1,33 @@
-import React, { InputHTMLAttributes, forwardRef, useState } from 'react';
 import './InputWithValidation.scss'
+import { UseControllerProps, useController } from 'react-hook-form';
 
-interface InputWithValidationProps extends InputHTMLAttributes<HTMLInputElement> {
-  error: string
-  inputType?: string
-  validator: (str: string) => boolean
-  setValid: (isValid: boolean) => void
-
+type FormValues = {
+  login: string
 }
 
-const InputWithValidation = forwardRef<HTMLInputElement, InputWithValidationProps>(
-  ({ error, setValid, validator, inputType = 'text' }: InputWithValidationProps, ref) => {
+interface Props extends UseControllerProps<FormValues>{
+  placeholder: string
+}
 
-    const [inputValue, setInputValue] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
+const InputWithValidation = (props: Props) => {
+  const {placeholder} = props
 
-    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setInputValue(e.target.value);
-    };
+  const {
+    field,
+    fieldState: { error }
+  } = useController(props);
 
-    const validateInput = () => {
-      setInputValue(inputValue.trim());
 
-      const isValid = validator(inputValue)
-      setValid(isValid)
-      setErrorMessage(isValid ? error : '');
-    };
-
-    return (
-      <div >
-        <input
-          ref={ref}
-          type={inputType}
-          className='LoginInput'
-          value={inputValue}
-          onChange={onChange}
-          onBlur={validateInput}
-          placeholder="Work email"
-        />
-        {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
-      </div>
-    );
-  })
+  return (
+    <div >
+      <input
+        {...field}
+        className='LoginInput'
+        placeholder={placeholder}
+      />
+      <div className='Error'>{error?.message}</div>
+    </div>
+  );
+}
 
 export default InputWithValidation;
