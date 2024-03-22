@@ -1,19 +1,19 @@
-import './IconButton.scss'
+import styles from './styles.module.scss';
 
-interface IconButtonProps {
-    title: string
-    onClick?: () => void
-    disabled?: boolean
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  styleName?: string;
 }
 
-const FilledButton = ({ title, onClick, disabled }: IconButtonProps) => {
-
-    return (
-        <button className='FilledButton' onClick={onClick} disabled={disabled}>
-            {title}
-        </button>
-
-    );
-}
+const FilledButton = (props: ButtonProps) => {
+  const { styleName, children, ...rest } = props;
+  return (
+    <div className={styleName}>
+      <button className={styles.filledButton} {...rest}>
+        {children}
+      </button>
+    </div>
+  );
+};
 
 export default FilledButton;

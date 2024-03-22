@@ -1,0 +1,21 @@
+@import '@/Theme.scss';
+
+.divider {
+  font-size: 30px;
+  display: flex;
+  color: $colorLightGrey;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 30px 0;
+}
+
+.divider::before,
+.divider::after {
+  flex: 1;
+  content: '';
+  padding: 1px;
+  background-color: $colorLightGrey;
+  margin: 5px;
+  width: 160px;
+}

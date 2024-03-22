@@ -1,0 +1,24 @@
+@import './../../../Theme.scss';
+
+.loginButton {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 192px;
+  height: 48px;
+  border-radius: 6px;
+  background-color: $colorWhite;
+  border-style: solid;
+  border-color: $colorLightGrey;
+  box-shadow: none;
+  border-width: 1.2px;
+
+  img {
+    margin-right: 10px;
+  }
+
+  &:active {
+    background-color: darken($colorWhite, 10);
+  }
+}

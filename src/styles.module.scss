@@ -1,0 +1,16 @@
+@font-face {
+  font-family: 'BasisGrotesquePro';
+  src:
+    local('BasisGrotesquePro'),
+    url(./assets/basis-grotesque-pro/BasisGrotesquePro-Regular.ttf)
+      format('woff');
+}
+
+.app {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

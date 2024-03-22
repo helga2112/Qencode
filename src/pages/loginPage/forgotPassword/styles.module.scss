@@ -1,0 +1,19 @@
+@import '@/Theme.scss';
+
+.container {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.helpText {
+  font-weight: 700;
+  font-size: 30px;
+  padding: 70px 0 40px;
+  font-family: BasisGrotesquePro;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 38.73px;
+  text-align: center;
+}

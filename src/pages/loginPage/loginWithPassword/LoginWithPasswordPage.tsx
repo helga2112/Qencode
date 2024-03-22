@@ -1,96 +1,114 @@
 import { useEffect } from 'react';
-import githubIcon from '@/assets/githubIcon.svg'
-import googleIcon from '@/assets/googleIcon.svg'
-import './../LoginPage.scss'
-import FilledButton from '@/components/buttons/filledButton/FilledButton';
-import IconButton from '@/components/buttons/iconButton/IconButton';
-import InputPassword from '@/components/inputPassword/ImputPassword';
 import { useNavigate } from 'react-router-dom';
-import LoginPageWrapper from '@/components/loginWrapper/LoginWrapper';
-import { useLoginAppPostMutation } from '@/features/async-api/async-api-slice';
-import { useAppDispatch } from '@/app/hooks';
-import BackdropWrapper from '@/components/backdropWrapper/BackdropWrapper';
-import { savelogin } from '@/features/login/login-slice';
-import { FormProvider, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { loginWithPasswordSchema } from './validationSchema';
+import { useAppDispatch, useAppSelector } from '@app/hooks';
+import githubIcon from '@assets/githubIcon.svg';
+import googleIcon from '@assets/googleIcon.svg';
+import FilledButton from '@components/buttons/filledButton/FilledButton';
+import IconButton from '@components/buttons/iconButton/IconButton';
+import InputPassword from '@components/inputPassword/ImputPassword';
+import BackdropWrapper from '@components/backdropWrapper/BackdropWrapper';
+import LoginPageWrapper from '@components/loginWrapper/LoginWrapper';
+import InputWithValidation from '@components/inputWithValidation/InputWithValidation';
+import Devider from '@components/devider/Devider';
 import { zodResolver } from '@hookform/resolvers/zod';
-import InputWithValidation from '@/components/inputWithValidation/InputWithValidation';
-import Devider from '@/components/devider/Devider';
+import { useLoginAppPostMutation } from '@features/asyncApi/asyncApiSlice';
+import { saveToken, savelogin } from '@features/login/loginSlice';
+import { schemaLoginPassword } from '../validationSchema/schema';
+import styles from './styles.module.scss';
 
+type ValidationType = z.infer<typeof schemaLoginPassword>;
 
-type ValidationType = z.infer<typeof loginWithPasswordSchema>
+const LoginWithPasswordPage = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
-function LoginWithPasswordPage() {
-  const navigate = useNavigate()
-  const dispatch = useAppDispatch()
-  const methods = useForm()
+  const userLogin = useAppSelector((state) => state.login.login);
 
   const {
     formState: { isValid, errors },
     register,
+    trigger,
     getValues,
   } = useForm<ValidationType>({
-    resolver: zodResolver(loginWithPasswordSchema),
-    defaultValues: { login: '' },
-    mode: 'onBlur'
-  })
+    resolver: zodResolver(schemaLoginPassword),
+    defaultValues: { login: userLogin, password: '' },
+    mode: 'all',
+  });
 
-
-  const [sendData, { data, isLoading, isSuccess, isError }] = useLoginAppPostMutation()
-  //const { data = {}, isFetching } = useLoginAppQuery({ email: 'user@example.com', password: 'pass123123123' })
+  const [sendData, { data, error, isLoading, isSuccess, isError }] =
+    useLoginAppPostMutation();
 
   const forgotPassword = () => {
-    navigate('/forget-password')
-  }
+    navigate('/forgot-password');
+  };
 
   const login = () => {
-    const data = getValues()
-    sendData({ email: data.login, password: data.password })
-  }
+    const data = getValues();
+    sendData({ email: data.login, password: data.password });
+  };
 
   useEffect(() => {
     if (isSuccess) {
-      dispatch(savelogin('login')) //TODO: change here to variable
-      navigate('/home')
+      const { access_token, refresh_token } = data!;
+      dispatch(savelogin(getValues().login));
+      dispatch(saveToken(access_token));
+      dispatch(saveToken(refresh_token));
+      navigate('/home');
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSuccess])
+  }, [isSuccess]);
+
+  useEffect(() => {
+    if (isError) {
+      dispatch(savelogin(''));
+      navigate('/forgot-password');
+    }
+  }, [isError]);
 
   return (
     <>
       <BackdropWrapper isVisible={isLoading} />
-      <FormProvider {...methods}>
-        <LoginPageWrapper>
-          <div className="LoginFormContainer">
-            <div className='HelpText'>  Login to your account</div>
-            <div className='LoginButtons'>
-              <IconButton title='Google' imgSource={googleIcon} />
-              <IconButton title='Github' imgSource={githubIcon} />
-            </div>
-            <Devider />
-            <InputWithValidation
-              name='login'
-              placeholder="Work email"
-              error={errors.login?.message}
-              register={register}
-            />
-            <InputPassword
-              name='password'
-              register={register}
-              placeholder='Password'
-              error={errors.password?.message}
-            />
-            <div className='ForgotEmail' onClick={forgotPassword}>Forgot your password?</div>
-            <FilledButton title='Login to Qencode' disabled={isValid} onClick={login} />
-            <span className="BottomText">Is your company new to Qencode?
-              <a href='http://google.com'>Sign up</a>
-            </span>
+      <LoginPageWrapper>
+        <div className={styles.container}>
+          <div className={styles.helpText}> Login to your account</div>
+          <div className={styles.loginButtons}>
+            <IconButton title="Google" imgSource={googleIcon} />
+            <IconButton title="Github" imgSource={githubIcon} />
           </div>
-        </LoginPageWrapper>
-      </FormProvider>
+          <Devider />
+          <InputWithValidation
+            name="login"
+            placeholder="Work email"
+            error={errors.login?.message}
+            register={register}
+          />
+          <InputPassword
+            name="password"
+            placeholder="Password"
+            styleName={styles.inputPassword}
+            register={register}
+            revalidate={() => trigger()}
+            error={errors.password?.message}
+          />
+          <div className={styles.forgotEmail} onClick={forgotPassword}>
+            Forgot your password?
+          </div>
+          <FilledButton
+            disabled={!isValid}
+            onClick={login}
+            styleName={styles.buttonLogin}
+          >
+            Login to Qencode
+          </FilledButton>
+          <div className={styles.bottomText}>
+            Is your company new to Qencode?
+            <a href="http://google.com">Sign up</a>
+          </div>
+        </div>
+      </LoginPageWrapper>
     </>
   );
-}
+};
 
 export default LoginWithPasswordPage;

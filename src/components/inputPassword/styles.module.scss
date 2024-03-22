@@ -1,0 +1,37 @@
+@import '@/Theme.scss';
+
+.passwordContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.error {
+  position: absolute;
+  text-align: left;
+  font-size: 14px;
+  color: red;
+}
+
+.passwordInput {
+  width: 360px;
+  height: 48px;
+  border-radius: 6px;
+  border-width: 1px;
+  border-color: $colorLightGrey;
+  border-style: solid;
+  padding-left: 15px;
+  padding-right: 20px;
+  line-height: 20px;
+}
+
+.eyeIcon {
+  cursor: pointer;
+  margin-left: -30px;
+}
+
+.eyeIconActive {
+  cursor: pointer;
+  margin-left: -30px;
+  filter: invert(6%) sepia(99%) saturate(74391%) hue-rotate(247deg)
+    brightness(123%) contrast(138%);
+}

@@ -1,0 +1,38 @@
+@import '@/Theme.scss';
+
+.container {
+  width: 400px;
+}
+
+.bottomText {
+  margin-top: 24px;
+  width: 400px;
+  height: 15px;
+  letter-spacing: 1px;
+
+  a {
+    margin-left: 10px;
+    color: $colorBlue;
+  }
+}
+
+.buttonLogin {
+  margin-top: 28px;
+}
+
+.loginButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.helpText {
+  font-weight: 700;
+  font-size: 30px;
+  padding: 70px 0 40px;
+  font-family: BasisGrotesquePro;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 38.73px;
+  text-align: center;
+}

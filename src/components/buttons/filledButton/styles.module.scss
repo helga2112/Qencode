@@ -1,0 +1,22 @@
+@import '@/Theme.scss';
+
+.filledButton {
+  cursor: pointer;
+  width: 400px;
+  height: 48px;
+  color: $colorWhite;
+  border-radius: 6px;
+  background-color: $colorBlue;
+  border-width: 1.2px;
+  border-color: $colorLightGrey;
+  font-size: 16px;
+  font-weight: 500;
+
+  &:active {
+    background-color: darken($colorBlue, 10);
+  }
+
+  &:disabled {
+    background-color: lighten($colorBlue, 10);
+  }
+}

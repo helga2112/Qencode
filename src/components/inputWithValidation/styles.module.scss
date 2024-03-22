@@ -1,0 +1,20 @@
+@import './../../Theme.scss';
+
+.loginInput {
+  width: 360px;
+  height: 48px;
+  border-radius: 6px;
+  border-width: 1px;
+  border-color: $colorLightGrey;
+  border-style: solid;
+  padding-left: 15px;
+  padding-right: 20px;
+  line-height: 20px;
+}
+
+.error {
+  position: absolute;
+  text-align: left;
+  font-size: 14px;
+  color: red;
+}
