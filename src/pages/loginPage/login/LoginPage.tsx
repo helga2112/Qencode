@@ -4,26 +4,27 @@ import './../LoginPage.scss'
 import IconButton from '@/components/buttons/iconButton/IconButton';
 import FilledButton from '@/components/buttons/filledButton/FilledButton';
 import LoginPageWrapper from '@/components/loginWrapper/LoginWrapper';
-import  Devider  from '@/components/devider/Devider';
+import Devider from '@/components/devider/Devider';
 import { useNavigate } from 'react-router-dom';
 import InputWithValidation from '@/components/inputWithValidation/InputWithValidation';
 import { useAppDispatch } from '@/app/hooks'
 import { savelogin } from '@/features/login/login-slice';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod"
 import { loginSchema } from './validationSchema';
 import { z } from 'zod';
 
+type ValidationType = z.infer<typeof loginSchema>
+
 function LoginPage() {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  type Schema = z.infer<typeof loginSchema>
 
   const {
-    formState: { isValid },
-    control,
+    formState: { isValid, errors },
+    register,
     getValues,
-  } = useForm<Schema>({
+  } = useForm<ValidationType>({
     resolver: zodResolver(loginSchema),
     defaultValues: { login: '' },
     mode: 'onBlur'
@@ -36,6 +37,8 @@ function LoginPage() {
     navigate('/login')
   }
 
+  console.log(errors)
+  console.log(getValues())
 
   return (
     <LoginPageWrapper>
@@ -48,10 +51,15 @@ function LoginPage() {
         <Devider />
         <InputWithValidation
           name='login'
-          control={control}
           placeholder="Work email"
+          error={errors.login?.message}
+          register={register}
         />
-        <FilledButton title='Login to Qencode' onClick={saveLogin} disabled={!isValid} />
+        <FilledButton
+          title='Login to Qencode'
+          onClick={saveLogin}
+          disabled={!isValid}
+        />
         <span className="BottomText">Is your company new to Qencode?
           <a href='http://google.com'>Sign up</a>
         </span>

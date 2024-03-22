@@ -1,43 +1,40 @@
-import EyeIcon from './../../assets/eyeIcon.svg'
+import EyeIcon from '@/assets/eyeIcon.svg'
 import React, { useState } from 'react';
 import './InputPassword.scss'
-import InputWithValidation from '../inputWithValidation/InputWithValidation';
-import { isEmptyString } from '../../utils/usEmptyString';
+import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
 
-interface InputPasswordProps {
-    ref: React.RefObject<HTMLInputElement>
-    setValid: (isValid: boolean) => void
-}
 
-const InputPassword = ({ setValid }: InputPasswordProps) => {
+interface Props<TFieldValues extends FieldValues> {
+    name: Path<TFieldValues>
+    placeholder: string
+    register: UseFormRegister<TFieldValues>
+    error?: string
+  }
+
+const InputPassword = <TFieldValues extends FieldValues>(props: Props<TFieldValues>) => {
+    const {placeholder, name, error, register} = props
+
     const [isVisible, setIsVisible] = useState(false);
-    const [inputValue, setInputValue] = useState('');
 
-    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(e.target.value);
-    };
 
-    const validateInput = () => {
-        setInputValue(inputValue.trim());
-    };
 
     return (
-        <div className='passwordContainer'>
-         {/*    <InputWithValidation
-                inputType={isVisible ? 'type' : 'password'}
-                className='Password'
-                value={inputValue}
-                onChange={onChange}
-                onBlur={validateInput}
-                placeholder="Password"
-                error={''}
-                validator={isEmptyString}
-                setValid={setValid} /> */}
-            <img className={isVisible ? 'EyeIconActive' : 'EyeIcon'}
-                src={EyeIcon}
-                alt=''
-                onClick={() => setIsVisible(!isVisible)} />
-        </div>
+        <>
+            <div className='passwordContainer'>
+                <input
+                    {...register(name)}
+                    className='Password'
+                    type={isVisible ? 'text' : 'password'}
+                    name='password'
+                    placeholder={placeholder}
+                />
+                <img className={isVisible ? 'EyeIconActive' : 'EyeIcon'}
+                    src={EyeIcon}
+                    alt=''
+                    onClick={() => setIsVisible(!isVisible)} />
+            </div>
+            <div className='Error'>{error}</div>
+        </>
     );
 }
 

@@ -16,3 +16,4 @@ export const loginSchema = z.object({
     .min(MIN_LENGTH, { message: ERROR_STRING_IS_SHORT})
     .regex(EMAIL_REGEX, { message: ERROR_INVALID_EMAIL })
 })
+

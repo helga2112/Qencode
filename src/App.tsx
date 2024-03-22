@@ -8,9 +8,9 @@ function App() {
   return (
     <BrowserRouter>
       <Provider store={store}>
-        <div className="App">
-          <AppRouter />
-        </div>
+          <div className="App">
+            <AppRouter />
+          </div>
       </Provider>
     </BrowserRouter>
   );

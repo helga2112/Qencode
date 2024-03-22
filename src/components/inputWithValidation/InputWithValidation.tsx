@@ -1,31 +1,21 @@
 import './InputWithValidation.scss'
-import { UseControllerProps, useController } from 'react-hook-form';
+import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
 
-type FormValues = {
-  login: string
-}
 
-interface Props extends UseControllerProps<FormValues>{
+interface Props<TFieldValues extends FieldValues> {
+  name: Path<TFieldValues>
   placeholder: string
+  register: UseFormRegister<TFieldValues>
+  error?: string
 }
 
-const InputWithValidation = (props: Props) => {
-  const {placeholder} = props
-
-  const {
-    field,
-    fieldState: { error }
-  } = useController(props);
-
+const InputWithValidation = <TFieldValues extends FieldValues>(props: Props<TFieldValues>) => {
+  const { placeholder, error, name, register } = props
 
   return (
     <div >
-      <input
-        {...field}
-        className='LoginInput'
-        placeholder={placeholder}
-      />
-      <div className='Error'>{error?.message}</div>
+      <input {...register(name)} className='LoginInput' placeholder={placeholder} />
+      <div className='Error'>{error}</div>
     </div>
   );
 }
